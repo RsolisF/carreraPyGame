@@ -40,11 +40,13 @@ class Game():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     gameOver=True
-            
+                    
+  
             for runner in self.runners:
                 runner.avanzar()
                 if runner.position[0] >= self.__finishLine:
-                    print('El ganador es el coche {}'.format(runner.name))
+                    ganador = ' El ganador es el coche {} '.format(runner.name)
+                    #print('El ganador es el coche {}'.format(runner.name))
                     gameOver=True
                 
             self.__screen.blit(self.__background, (0,0))
@@ -53,6 +55,10 @@ class Game():
                 self.__screen.blit(runner.custome,runner.position)
             
             pygame.display.flip()
+        tipoLetra = pygame.font.SysFont("Arial", 30)
+        textoGanador = tipoLetra.render(ganador,True, (255,255,255), (54,130,23) )
+        self.__screen.blit(textoGanador,(600,20))
+        pygame.display.flip()
         while True:    
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
